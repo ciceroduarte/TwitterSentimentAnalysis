@@ -1,0 +1,12 @@
+platform :ios, '11.0'
+
+target 'TwitterSentimentAnalysis' do
+  use_frameworks!
+
+  pod 'Kingfisher', :git => 'https://github.com/onevcat/Kingfisher.git', :branch => 'version6-xcode13'
+  pod 'SwiftLint'
+
+  target 'TwitterSentimentAnalysisTests' do
+    inherit! :search_paths
+  end
+end
