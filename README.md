@@ -1,3 +1,3 @@
 # TwitterSentiment
 
-[![Build Status](https://app.bitrise.io/app/1ffa0023a2a821ad/status.svg?token=0F9qxP1L3clI8GNKoVv-yA&branch=main)](https://app.bitrise.io/app/1ffa0023a2a821ad)
+[![Build Status](https://app.bitrise.io/app/1acd1fc4d0fe46dc/status.svg?token=utCTDlvxwMbPO3Yb3oOTaA&branch=main)](https://app.bitrise.io/app/1acd1fc4d0fe46dc)
