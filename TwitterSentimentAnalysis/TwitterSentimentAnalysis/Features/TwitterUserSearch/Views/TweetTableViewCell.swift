@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TweetTableViewCell: UITableViewCell, Reusable {
+class TweetTableViewCell: TableViewCell {
 
     lazy var name: UILabel = {
         let name = UILabel()
@@ -28,10 +28,8 @@ class TweetTableViewCell: UITableViewCell, Reusable {
     let imageHeight: CGFloat = 50.0
     lazy var image: UIImageView = {
         let image = UIImageView()
-        image.backgroundColor = .red
         image.layer.cornerRadius = imageHeight / 2.0
         image.clipsToBounds = true
-
         return image
     }()
 
@@ -46,10 +44,6 @@ class TweetTableViewCell: UITableViewCell, Reusable {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupViews()
-    }
-
-    required init?(coder: NSCoder) {
-        return nil
     }
 
     private func setupViews() {

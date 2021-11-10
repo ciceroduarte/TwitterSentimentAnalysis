@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SentimentView: UIView {
+class SentimentView: View {
 
     lazy var activityIndicatorView = UIActivityIndicatorView(style: .gray)
 
@@ -21,10 +21,6 @@ class SentimentView: UIView {
         super.init(frame: .zero)
         setupViews()
         setupConstraints()
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        return nil
     }
 
     private func setupViews() {

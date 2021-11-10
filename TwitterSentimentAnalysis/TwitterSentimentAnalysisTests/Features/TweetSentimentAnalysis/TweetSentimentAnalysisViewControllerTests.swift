@@ -17,10 +17,6 @@ class TweetSentimentAnalysisVCTests: XCTestCase {
     lazy var viewModel = TweetSentimentAnalysisViewModel(googleAPI: googleAPI, tweet: tweet, user: user)
     lazy var sut = TweetSentimentAnalysisViewController(withViewModel: viewModel)
 
-    func test_initWithCoder_shouldBeNil() {
-        XCTAssertNil(TweetSentimentAnalysisViewController(coder: NSCoder()))
-    }
-
     func test_sentimentalAnalysis_shouldSetScore() {
         googleAPI.shouldReturnSuccess = true
         sut.viewDidLoad()

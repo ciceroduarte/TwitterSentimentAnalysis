@@ -42,23 +42,12 @@ class GoogleAPI: APIProvider {
     }
 
     func analyzeSentiment(forContent content: String, language: String, completion: @escaping (Float?) -> Void) {
-
-        guard let url = components.url else {
-            completion(nil)
-            return
-        }
-
-        var request = URLRequest(url: url)
+        var request = URLRequest(url: components.url!)
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpMethod = "POST"
         let body = GoogleAPIBody(document: GoogleAPIBody.Document(language: language, content: content))
 
-        guard let jsonData = try? JSONEncoder().encode(body) else {
-            completion(nil)
-            return
-        }
-
-        request.httpBody = jsonData
+        request.httpBody = try? JSONEncoder().encode(body)
 
         fetch(DocumentSentimentResponse.self, request: request, completionHandler: { result in
             switch result {

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TweetSentimentAnalysisViewController: UIViewController {
+class TweetSentimentAnalysisViewController: ViewController {
 
     let viewModel: TweetSentimentAnalysisViewModel
 
@@ -51,10 +51,6 @@ class TweetSentimentAnalysisViewController: UIViewController {
     init(withViewModel viewModel: TweetSentimentAnalysisViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
-    }
-
-    required init?(coder: NSCoder) {
-        nil
     }
 
     override func viewDidLoad() {

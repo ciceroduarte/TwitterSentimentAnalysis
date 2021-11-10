@@ -16,10 +16,6 @@ class TwitterUserSearchViewControllerTests: XCTestCase {
     lazy var viewModel = TwitterUserSearchViewModel(withTwitterAPI: twitterAPI, coordinator: coordinator)
     lazy var sut = TwitterUserSearchViewController(withViewModel: viewModel)
 
-    func test_initWithCoder_shouldBeNil() {
-        XCTAssertNil(TwitterUserSearchViewController(coder: NSCoder()))
-    }
-
     func test_loadingView_shouldStartHidden() {
         sut.viewDidLoad()
 

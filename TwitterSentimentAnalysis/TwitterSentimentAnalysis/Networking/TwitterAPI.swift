@@ -37,11 +37,7 @@ class TwitterAPI: APIProvider {
             URLQueryItem(name: "user.fields", value: "id,name,profile_image_url,username")
         ]
 
-        guard let url = components.url, let request = twitterRequest(withUrl: url) else {
-            completionHandler(nil)
-            return
-        }
-
+        let request = twitterRequest(withUrl: components.url)
         fetch(TwitterUserResponse.self, request: request, completionHandler: { result in
             switch result {
             case .success(let response):
@@ -55,14 +51,11 @@ class TwitterAPI: APIProvider {
     func fetchTweets(forUserIdentifier userIdentifier: String, completion: @escaping ([Tweet]) -> Void) {
         components.path = "/2/users/\(userIdentifier)/tweets"
         components.queryItems = [
-            URLQueryItem(name: "tweet.fields", value: "lang,text")
+            URLQueryItem(name: "tweet.fields", value: "lang,text"),
+            URLQueryItem(name: "max_results", value: "100")
         ]
 
-        guard let url = components.url, let request = twitterRequest(withUrl: url) else {
-            completion([])
-            return
-        }
-
+        let request = twitterRequest(withUrl: components.url)
         fetch(TweetsResponse.self, request: request, completionHandler: { result in
             switch result {
             case .success(let response):
@@ -73,8 +66,8 @@ class TwitterAPI: APIProvider {
         })
     }
 
-    private func twitterRequest(withUrl url: URL) -> URLRequest? {
-        var request = URLRequest(url: url)
+    private func twitterRequest(withUrl url: URL?) -> URLRequest {
+        var request = URLRequest(url: url!)
         request.addValue("Bearer \(twitterKey)", forHTTPHeaderField: "Authorization")
         return request
     }

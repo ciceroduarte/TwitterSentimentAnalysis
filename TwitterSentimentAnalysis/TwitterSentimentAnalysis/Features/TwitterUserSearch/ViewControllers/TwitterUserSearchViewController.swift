@@ -7,17 +7,13 @@
 
 import UIKit
 
-class TwitterUserSearchViewController: UIViewController {
+class TwitterUserSearchViewController: ViewController {
 
     private let viewModel: TwitterUserSearchViewModel
 
     init(withViewModel viewModel: TwitterUserSearchViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
-    }
-
-    required init?(coder: NSCoder) {
-        nil
     }
 
     lazy var tableView: UITableView = {
@@ -51,15 +47,17 @@ class TwitterUserSearchViewController: UIViewController {
     }()
 
     lazy var loadingView = LoadingView()
+    lazy var userNotFoundView = UserNotFoundView()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         title = viewModel.title
         view.backgroundColor = .white
-        view.addSubviews([searchBar, tableView, loadingView])
+        view.addSubviews([searchBar, tableView, loadingView, userNotFoundView])
 
         viewModel.delegate = self
 
+        userNotFoundView.hide()
         loadingView.hide()
 
         setupConstrints()
@@ -80,7 +78,12 @@ class TwitterUserSearchViewController: UIViewController {
             loadingView.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
             loadingView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             loadingView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            loadingView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            loadingView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+
+            userNotFoundView.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
+            userNotFoundView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            userNotFoundView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            userNotFoundView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
 }
@@ -90,6 +93,7 @@ extension TwitterUserSearchViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         loadingView.show()
+        userNotFoundView.hide()
         viewModel.searchUser(withText: searchBar.text)
     }
 
@@ -131,5 +135,6 @@ extension TwitterUserSearchViewController: TwitterUserSearchViewModelDelegate {
 
     func fetchDidFailed() {
         loadingView.hide()
+        userNotFoundView.show()
     }
 }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LoadingView: UIView {
+class LoadingView: View {
 
     lazy var activityIndicatorView = UIActivityIndicatorView(style: .gray)
 
@@ -15,10 +15,6 @@ class LoadingView: UIView {
         super.init(frame: .zero)
         setupViews()
         setupConstraints()
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        return nil
     }
 
     private func setupViews() {
