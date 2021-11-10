@@ -11,11 +11,16 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     lazy var window: UIWindow? = UIWindow(frame: UIScreen.main.bounds)
+    var coordinator: AppCoordinator?
 
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
-        let navigationController = UINavigationController(rootViewController: ViewController())
+        AppSettings.setAppearance()
+
+        let navigationController = UINavigationController()
+        coordinator = AppCoordinator(withNavigationController: navigationController)
+        coordinator?.start()
 
         window?.makeKeyAndVisible()
         window?.rootViewController = navigationController
