@@ -61,6 +61,14 @@ class TwitterUserSearchViewModel {
         return TweetViewModel(name: user.name, username: user.username, text: tweet.text, image: user.profileImageUrl)
     }
 
+    func didSelectRowAt(_ indexPath: IndexPath) {
+        guard let user = user else { return }
+
+        let tweet = tweets[indexPath.row]
+
+        coordinator.openTweetSentimentAnalysis(withUser: user, tweet: tweet)
+    }
+
     private func fetchUserTweets() {
         guard let userId = user?.id else { return }
 

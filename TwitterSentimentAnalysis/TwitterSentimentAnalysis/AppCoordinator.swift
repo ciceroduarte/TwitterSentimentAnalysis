@@ -21,4 +21,11 @@ struct AppCoordinator {
         let searchUserViewController = TwitterUserSearchViewController(withViewModel: viewModel)
         navigationController.pushViewController(searchUserViewController, animated: false)
     }
+
+    func openTweetSentimentAnalysis(withUser user: User, tweet: Tweet) {
+        let googleAPI = GoogleAPI(withGoogleKey: AppSettings.googleKey, session: .shared)
+        let viewModel = TweetSentimentAnalysisViewModel(googleAPI: googleAPI, tweet: tweet, user: user)
+        let tweetViewController = TweetSentimentAnalysisViewController(withViewModel: viewModel)
+        navigationController.pushViewController(tweetViewController, animated: true)
+    }
 }

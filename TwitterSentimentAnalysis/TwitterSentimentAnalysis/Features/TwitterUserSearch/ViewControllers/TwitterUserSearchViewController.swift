@@ -119,7 +119,7 @@ extension TwitterUserSearchViewController: UITableViewDelegate, UITableViewDataS
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
+        viewModel.didSelectRowAt(indexPath)
     }
 }
 
