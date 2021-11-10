@@ -27,4 +27,31 @@ class TweetSentimentAnalysisVCTests: XCTestCase {
 
         XCTAssertTrue(sut.sentimentView.backgroundColor == .green)
     }
+
+    func test_sentimentView_SadRange() {
+        sut.viewDidLoad()
+
+        sut.sentimentView.setScore(-1.0)
+        XCTAssertTrue(sut.sentimentView.backgroundColor == .red)
+
+        sut.sentimentView.setScore(-0.3)
+        XCTAssertTrue(sut.sentimentView.backgroundColor == .red)
+
+        sut.sentimentView.setScore(-0.2)
+        XCTAssertTrue(sut.sentimentView.backgroundColor == .yellow)
+    }
+
+    func test_sentimentView_HappyRange() {
+        sut.viewDidLoad()
+
+        sut.sentimentView.setScore(0.3)
+        XCTAssertTrue(sut.sentimentView.backgroundColor == .green)
+
+        sut.sentimentView.setScore(1.0)
+        XCTAssertTrue(sut.sentimentView.backgroundColor == .green)
+
+        sut.sentimentView.setScore(0.2)
+        XCTAssertTrue(sut.sentimentView.backgroundColor == .yellow)
+    }
+
 }
