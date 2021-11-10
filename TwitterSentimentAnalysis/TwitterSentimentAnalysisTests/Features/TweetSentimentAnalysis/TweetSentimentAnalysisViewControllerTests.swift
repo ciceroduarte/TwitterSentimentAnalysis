@@ -8,7 +8,7 @@
 import XCTest
 @testable import TwitterSentimentAnalysis
 
-class TweetSentimentAnalysisViewControllerTests: XCTestCase {
+class TweetSentimentAnalysisVCTests: XCTestCase {
 
     lazy var googleAPI = GoogleAPIMock(withGoogleKey: String(), session: .shared)
     lazy var navigationController = UINavigationController()

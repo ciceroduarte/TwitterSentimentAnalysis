@@ -76,25 +76,25 @@ class TweetSentimentAnalysisViewController: UIViewController {
 
     private func setupConstraints() {
         NSLayoutConstraint.activate([
-            image.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 8),
+            image.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 8),
             image.topAnchor.constraint(equalTo: view.topAnchor, constant: 16),
             image.heightAnchor.constraint(equalToConstant: imageHeight),
             image.widthAnchor.constraint(equalToConstant: imageHeight),
 
             name.leadingAnchor.constraint(equalTo: image.trailingAnchor, constant: 8),
-            name.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8),
+            name.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -8),
             name.topAnchor.constraint(equalTo: image.topAnchor),
 
             username.leadingAnchor.constraint(equalTo: image.trailingAnchor, constant: 8),
-            username.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -8),
+            username.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -8),
             username.bottomAnchor.constraint(equalTo: image.bottomAnchor),
 
             tweet.leadingAnchor.constraint(equalTo: image.leadingAnchor, constant: 8),
-            tweet.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            tweet.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             tweet.topAnchor.constraint(equalTo: image.bottomAnchor, constant: 16),
 
-            sentimentView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
-            sentimentView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
+            sentimentView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
+            sentimentView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
             sentimentView.topAnchor.constraint(greaterThanOrEqualTo: tweet.bottomAnchor, constant: 16),
             sentimentView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -16),
             sentimentView.heightAnchor.constraint(equalToConstant: 75)
