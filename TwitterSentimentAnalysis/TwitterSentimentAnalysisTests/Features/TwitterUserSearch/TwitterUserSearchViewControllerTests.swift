@@ -11,8 +11,8 @@ import XCTest
 class TwitterUserSearchViewControllerTests: XCTestCase {
 
     lazy var twitterAPI = TwitterAPIMock(withTwitterKey: String(), session: .shared)
-    lazy var navigationController = UINavigationController()
-    lazy var coordinator = AppCoordinator(withNavigationController: navigationController)
+    lazy var navigationControllerSpy = NavigationControllerSpy()
+    lazy var coordinator = AppCoordinator(withNavigationController: navigationControllerSpy)
     lazy var viewModel = TwitterUserSearchViewModel(withTwitterAPI: twitterAPI, coordinator: coordinator)
     lazy var sut = TwitterUserSearchViewController(withViewModel: viewModel)
 
@@ -110,6 +110,17 @@ class TwitterUserSearchViewControllerTests: XCTestCase {
 
         XCTAssertTrue(sut.tableView(sut.tableView, numberOfRowsInSection: 0) != 0)
     }
+
+    func test_didSelectRowAt_shouldOpenTweetSentimentAnalysis() {
+        sut.viewDidLoad()
+        twitterAPI.shouldReturnSuccess = true
+
+        sut.searchBar.text = "testing"
+        sut.searchBarSearchButtonClicked(sut.searchBar)
+        sut.tableView(sut.tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
+
+        XCTAssertTrue(navigationControllerSpy.pushViewControllerWasCalled)
+    }
 }
 
 class SearchBarSpy: UISearchBar {
@@ -119,5 +130,14 @@ class SearchBarSpy: UISearchBar {
     override func resignFirstResponder() -> Bool {
         resignFirstResponderWasCalled = true
         return true
+    }
+}
+
+class NavigationControllerSpy: UINavigationController {
+
+    var pushViewControllerWasCalled = false
+
+    override func pushViewController(_ viewController: UIViewController, animated: Bool) {
+        pushViewControllerWasCalled = true
     }
 }
