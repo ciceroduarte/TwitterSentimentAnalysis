@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		2D008158E10CF8E58D622B49 /* Pods_TwitterSentimentAnalysisTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9A1822B8DD838F1BB4600ED /* Pods_TwitterSentimentAnalysisTests.framework */; };
+		420E50FC273C8CCE00E2F4FD /* TweetSentimentAnalysisView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 420E50FB273C8CCE00E2F4FD /* TweetSentimentAnalysisView.swift */; };
+		420E50FE273C8F3500E2F4FD /* TwitterUserSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 420E50FD273C8F3500E2F4FD /* TwitterUserSearchView.swift */; };
 		4256FA5B273BE95F00237A69 /* GoogleAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4256FA5A273BE95F00237A69 /* GoogleAPITests.swift */; };
 		4256FA5D273BEBCA00237A69 /* GoogleAPIMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4256FA5C273BEBCA00237A69 /* GoogleAPIMock.swift */; };
 		4256FA60273BECA300237A69 /* TweetSentimentAnalysisViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4256FA5F273BECA300237A69 /* TweetSentimentAnalysisViewControllerTests.swift */; };
@@ -60,6 +62,8 @@
 /* Begin PBXFileReference section */
 		2009333FE0736998BF829A84 /* Pods_TwitterSentimentAnalysis.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TwitterSentimentAnalysis.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		33E6EBF9636E885F8D3AE0C5 /* Pods-TwitterSentimentAnalysisTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TwitterSentimentAnalysisTests.debug.xcconfig"; path = "Target Support Files/Pods-TwitterSentimentAnalysisTests/Pods-TwitterSentimentAnalysisTests.debug.xcconfig"; sourceTree = "<group>"; };
+		420E50FB273C8CCE00E2F4FD /* TweetSentimentAnalysisView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetSentimentAnalysisView.swift; sourceTree = "<group>"; };
+		420E50FD273C8F3500E2F4FD /* TwitterUserSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwitterUserSearchView.swift; sourceTree = "<group>"; };
 		4256FA5A273BE95F00237A69 /* GoogleAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAPITests.swift; sourceTree = "<group>"; };
 		4256FA5C273BEBCA00237A69 /* GoogleAPIMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleAPIMock.swift; sourceTree = "<group>"; };
 		4256FA5F273BECA300237A69 /* TweetSentimentAnalysisViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TweetSentimentAnalysisViewControllerTests.swift; sourceTree = "<group>"; };
@@ -196,9 +200,9 @@
 		4268B4FB273B122D00DD10E1 /* TwitterUserSearch */ = {
 			isa = PBXGroup;
 			children = (
-				4268B51B273B5BB500DD10E1 /* ViewControllers */,
-				4268B51C273B5BC500DD10E1 /* ViewModels */,
 				4268B51D273B5BCF00DD10E1 /* Views */,
+				4268B51C273B5BC500DD10E1 /* ViewModels */,
+				4268B51B273B5BB500DD10E1 /* ViewControllers */,
 			);
 			path = TwitterUserSearch;
 			sourceTree = "<group>";
@@ -261,6 +265,7 @@
 				4268B510273B298000DD10E1 /* TweetTableViewCell.swift */,
 				4268B515273B338200DD10E1 /* LoadingView.swift */,
 				4256FA61273C35AC00237A69 /* UserNotFoundView.swift */,
+				420E50FD273C8F3500E2F4FD /* TwitterUserSearchView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -287,6 +292,7 @@
 			isa = PBXGroup;
 			children = (
 				4268B52C273B6CA600DD10E1 /* SentimentView.swift */,
+				420E50FB273C8CCE00E2F4FD /* TweetSentimentAnalysisView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -562,6 +568,7 @@
 				4268B516273B338200DD10E1 /* LoadingView.swift in Sources */,
 				4256FA67273C3F3E00237A69 /* ViewController.swift in Sources */,
 				4268B524273B67C400DD10E1 /* DocumentSentiment.swift in Sources */,
+				420E50FE273C8F3500E2F4FD /* TwitterUserSearchView.swift in Sources */,
 				4268B4F9273B11E400DD10E1 /* AppSettings.swift in Sources */,
 				4268B503273B138800DD10E1 /* Reusable.swift in Sources */,
 				4256FA64273C3BDA00237A69 /* View.swift in Sources */,
@@ -578,6 +585,7 @@
 				4268B513273B2C2000DD10E1 /* TweetTableViewCellViewModel.swift in Sources */,
 				4268B52D273B6CA600DD10E1 /* SentimentView.swift in Sources */,
 				4268B4E5273AD95700DD10E1 /* APIProvider.swift in Sources */,
+				420E50FC273C8CCE00E2F4FD /* TweetSentimentAnalysisView.swift in Sources */,
 				4268B4FD273B123F00DD10E1 /* TwitterUserSearchViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
