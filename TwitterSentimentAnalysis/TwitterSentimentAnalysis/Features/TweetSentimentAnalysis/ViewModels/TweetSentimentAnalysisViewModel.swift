@@ -10,8 +10,8 @@ import Foundation
 struct TweetSentimentAnalysisViewModel {
 
     let googleAPI: GoogleAPI
-    var tweet: Tweet
-    var user: User
+    let tweet: Tweet
+    let user: User
 
     var name: String {
         user.name

@@ -19,33 +19,33 @@ class TwitterUserSearchViewControllerTests: XCTestCase {
     func test_loadingView_shouldStartHidden() {
         sut.viewDidLoad()
 
-        XCTAssertTrue(sut.loadingView.isHidden)
+        XCTAssertTrue(sut.twitterUSerSerchView.loadingView.isHidden)
     }
 
     func test_loadingView_shouldShow_onSearch() {
-        sut.searchBarSearchButtonClicked(sut.searchBar)
+        sut.searchBarSearchButtonClicked(sut.twitterUSerSerchView.searchBar)
 
-        XCTAssertFalse(sut.loadingView.isHidden)
+        XCTAssertFalse(sut.twitterUSerSerchView.loadingView.isHidden)
     }
 
     func test_searchBar_shouldShowCancelbutton_onTextDidDidBeginEditing() {
-        sut.searchBarTextDidBeginEditing(sut.searchBar)
+        sut.searchBarTextDidBeginEditing(sut.twitterUSerSerchView.searchBar)
 
-        XCTAssertTrue(sut.searchBar.showsCancelButton)
+        XCTAssertTrue(sut.twitterUSerSerchView.searchBar.showsCancelButton)
     }
 
     func test_searchBar_shouldHideCancelButton_onTextDidEndEditing() {
-        sut.searchBarTextDidBeginEditing(sut.searchBar)
-        sut.searchBarTextDidEndEditing(sut.searchBar)
+        sut.searchBarTextDidBeginEditing(sut.twitterUSerSerchView.searchBar)
+        sut.searchBarTextDidEndEditing(sut.twitterUSerSerchView.searchBar)
 
-        XCTAssertFalse(sut.searchBar.showsCancelButton)
+        XCTAssertFalse(sut.twitterUSerSerchView.searchBar.showsCancelButton)
     }
 
     func test_searchBar_shouldHideKeyboard_onCancelClick() {
         let searchBarSpy = SearchBarSpy()
-        sut.searchBar = searchBarSpy
+        sut.twitterUSerSerchView.searchBar = searchBarSpy
 
-        sut.searchBarCancelButtonClicked(sut.searchBar)
+        sut.searchBarCancelButtonClicked(sut.twitterUSerSerchView.searchBar)
 
         XCTAssertTrue(searchBarSpy.resignFirstResponderWasCalled)
     }
@@ -53,26 +53,29 @@ class TwitterUserSearchViewControllerTests: XCTestCase {
     func test_numberOfRows_shouldBeEqualToNumberOfTweets() {
         viewModel.tweets.append(Tweet(text: String(), lang: String()))
 
-        XCTAssertEqual(sut.tableView.numberOfRows(inSection: 0), viewModel.tweets.count)
+        let numberOfRows = sut.tableView(sut.twitterUSerSerchView.tableView, numberOfRowsInSection: 0)
+
+        XCTAssertEqual(numberOfRows, viewModel.tweets.count)
     }
 
     func test_cellForRowAt_shouldReturnTweetTableViewCell() {
         viewModel.tweets.append(Tweet(text: String(), lang: String()))
 
         let indexPath = IndexPath(row: 0, section: 0)
-        let cell = sut.tableView.cellForRow(at: indexPath)
+        let cell = sut.tableView(sut.twitterUSerSerchView.tableView, cellForRowAt: indexPath)
 
         XCTAssertTrue(cell is TweetTableViewCell)
     }
 
     func test_cellForRowAt_shouldReturnConfiguredCell() {
         twitterAPI.shouldReturnSuccess = true
-        sut.searchBar.text = "testing"
+        sut.twitterUSerSerchView.searchBar.text = "testing"
 
-        sut.searchBarSearchButtonClicked(sut.searchBar)
+        sut.searchBarSearchButtonClicked(sut.twitterUSerSerchView.searchBar)
 
         let indexPath = IndexPath(row: 0, section: 0)
-        let cell = sut.tableView.cellForRow(at: indexPath) as? TweetTableViewCell
+
+        let cell = sut.tableView(sut.twitterUSerSerchView.tableView, cellForRowAt: indexPath) as? TweetTableViewCell
 
         XCTAssertNotNil(cell)
     }
@@ -81,39 +84,39 @@ class TwitterUserSearchViewControllerTests: XCTestCase {
         let tweet = Tweet(text: String(), lang: String())
         sut.viewDidLoad()
 
-        sut.loadingView.show()
+        sut.twitterUSerSerchView.loadingView.show()
         viewModel.tweets = [tweet]
 
-        XCTAssertTrue(sut.loadingView.isHidden)
-        XCTAssertEqual(sut.tableView(sut.tableView, numberOfRowsInSection: 0), 1)
+        XCTAssertTrue(sut.twitterUSerSerchView.loadingView.isHidden)
+        XCTAssertEqual(sut.tableView(sut.twitterUSerSerchView.tableView, numberOfRowsInSection: 0), 1)
     }
 
     func test_invalidUser_shouldHideLoading() {
         sut.viewDidLoad()
 
-        sut.loadingView.show()
+        sut.twitterUSerSerchView.loadingView.show()
         viewModel.user = nil
 
-        XCTAssertTrue(sut.loadingView.isHidden)
+        XCTAssertTrue(sut.twitterUSerSerchView.loadingView.isHidden)
     }
 
     func test_fetchSuccess_shouldLoadTweets() {
         sut.viewDidLoad()
         twitterAPI.shouldReturnSuccess = true
 
-        sut.searchBar.text = "testing"
-        sut.searchBarSearchButtonClicked(sut.searchBar)
+        sut.twitterUSerSerchView.searchBar.text = "testing"
+        sut.searchBarSearchButtonClicked(sut.twitterUSerSerchView.searchBar)
 
-        XCTAssertTrue(sut.tableView(sut.tableView, numberOfRowsInSection: 0) != 0)
+        XCTAssertTrue(sut.tableView(sut.twitterUSerSerchView.tableView, numberOfRowsInSection: 0) != 0)
     }
 
     func test_didSelectRowAt_shouldOpenTweetSentimentAnalysis() {
         sut.viewDidLoad()
         twitterAPI.shouldReturnSuccess = true
 
-        sut.searchBar.text = "testing"
-        sut.searchBarSearchButtonClicked(sut.searchBar)
-        sut.tableView(sut.tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
+        sut.twitterUSerSerchView.searchBar.text = "testing"
+        sut.searchBarSearchButtonClicked(sut.twitterUSerSerchView.searchBar)
+        sut.tableView(sut.twitterUSerSerchView.tableView, didSelectRowAt: IndexPath(row: 0, section: 0))
 
         XCTAssertTrue(navigationControllerSpy.pushViewControllerWasCalled)
     }

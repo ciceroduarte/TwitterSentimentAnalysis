@@ -10,80 +10,36 @@ import UIKit
 class TwitterUserSearchViewController: ViewController {
 
     private let viewModel: TwitterUserSearchViewModel
+    lazy var twitterUSerSerchView = TwitterUserSearchView()
 
     init(withViewModel viewModel: TwitterUserSearchViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
 
-    lazy var tableView: UITableView = {
-        let tableView = UITableView(frame: .zero, style: .plain)
-        tableView.delegate = self
-        tableView.dataSource = self
-
-        tableView.layoutMargins = .zero
-        tableView.separatorInset = .zero
-        tableView.separatorStyle = .singleLine
-        tableView.tableFooterView = UIView()
-
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 44.0
-
-        tableView.register(TweetTableViewCell.self)
-
-        return tableView
-    }()
-
-    lazy var searchBar: UISearchBar = {
-        let searchBar = UISearchBar()
-        searchBar.placeholder = "Search for Twitter user"
-        searchBar.delegate = self
-        searchBar.backgroundColor = .white
-        searchBar.tintColor = .black
-
-        searchBar.autocapitalizationType = .none
-        searchBar.searchBarStyle = .minimal
-        return searchBar
-    }()
-
-    lazy var loadingView = LoadingView()
-    lazy var userNotFoundView = UserNotFoundView()
-
     override func viewDidLoad() {
         super.viewDidLoad()
         title = viewModel.title
         view.backgroundColor = .white
-        view.addSubviews([searchBar, tableView, loadingView, userNotFoundView])
+        view.addSubviews([twitterUSerSerchView])
 
         viewModel.delegate = self
 
-        userNotFoundView.hide()
-        loadingView.hide()
+        twitterUSerSerchView.tableView.delegate = self
+        twitterUSerSerchView.tableView.dataSource = self
+        twitterUSerSerchView.searchBar.delegate = self
+        twitterUSerSerchView.userNotFoundView.hide()
+        twitterUSerSerchView.loadingView.hide()
 
-        setupConstrints()
+        setupConstraints()
     }
 
-    private func setupConstrints() {
+    private func setupConstraints() {
         NSLayoutConstraint.activate([
-            searchBar.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            searchBar.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            searchBar.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            searchBar.heightAnchor.constraint(equalToConstant: 44.0),
-
-            tableView.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
-            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-
-            loadingView.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
-            loadingView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            loadingView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            loadingView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-
-            userNotFoundView.topAnchor.constraint(equalTo: searchBar.bottomAnchor),
-            userNotFoundView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            userNotFoundView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            userNotFoundView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            twitterUSerSerchView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            twitterUSerSerchView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            twitterUSerSerchView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+            twitterUSerSerchView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor)
         ])
     }
 }
@@ -92,8 +48,8 @@ extension TwitterUserSearchViewController: UISearchBarDelegate {
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
-        loadingView.show()
-        userNotFoundView.hide()
+        twitterUSerSerchView.loadingView.show()
+        twitterUSerSerchView.userNotFoundView.hide()
         viewModel.searchUser(withText: searchBar.text)
     }
 
@@ -129,12 +85,12 @@ extension TwitterUserSearchViewController: UITableViewDelegate, UITableViewDataS
 
 extension TwitterUserSearchViewController: TwitterUserSearchViewModelDelegate {
     func tweetsDidChange() {
-        tableView.reloadData()
-        loadingView.hide()
+        twitterUSerSerchView.tableView.reloadData()
+        twitterUSerSerchView.loadingView.hide()
     }
 
     func fetchDidFailed() {
-        loadingView.hide()
-        userNotFoundView.show()
+        twitterUSerSerchView.loadingView.hide()
+        twitterUSerSerchView.userNotFoundView.show()
     }
 }
