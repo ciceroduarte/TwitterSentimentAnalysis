@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import TwitterAPIPackage
 
 protocol TwitterUserSearchViewModelDelegate: AnyObject {
     func tweetsDidChange()
@@ -14,7 +15,7 @@ protocol TwitterUserSearchViewModelDelegate: AnyObject {
 
 class TwitterUserSearchViewModel {
 
-    private let twitterAPI: TwitterAPI
+    private let twitterUserProvider: TwitterUserProvider
     private let coordinator: AppCoordinator
     weak var delegate: TwitterUserSearchViewModelDelegate?
     let title = "Twitter"
@@ -40,15 +41,15 @@ class TwitterUserSearchViewModel {
         tweets.count
     }
 
-    init(withTwitterAPI twitterAPI: TwitterAPI, coordinator: AppCoordinator) {
-        self.twitterAPI = twitterAPI
+    init(withTwitterUserProvider twitterUserProvider: TwitterUserProvider, coordinator: AppCoordinator) {
+        self.twitterUserProvider = twitterUserProvider
         self.coordinator = coordinator
     }
 
     func searchUser(withText text: String?) {
         guard let searchText = text, searchText.isEmpty == false else { return }
 
-        twitterAPI.fetchUser(byUsername: searchText, completionHandler: { [weak self] user in
+        twitterUserProvider.fetchUser(byUsername: searchText, completionHandler: { [weak self] user in
             self?.user = user
         })
     }
@@ -70,9 +71,9 @@ class TwitterUserSearchViewModel {
     }
 
     private func fetchUserTweets() {
-        guard let userId = user?.id else { return }
+        guard let id = user?.id else { return }
 
-        twitterAPI.fetchTweets(forUserIdentifier: userId, completion: { [weak self] tweets in
+        twitterUserProvider.fetchUserTimeline(withIdentifier: id, completion: { [weak self] tweets in
             self?.tweets = tweets
         })
     }

@@ -6,10 +6,12 @@
 //
 
 import Foundation
+import GoogleAPIPackage
+import TwitterAPIPackage
 
 struct TweetSentimentAnalysisViewModel {
 
-    let googleAPI: GoogleAPI
+    let sentimentAnalyzer: DocumentSentimentAnalyzer
     let tweet: Tweet
     let user: User
 
@@ -30,7 +32,7 @@ struct TweetSentimentAnalysisViewModel {
     }
 
     func analyzeSentiment(completionHandler: @escaping (Float) -> Void) {
-        googleAPI.analyzeSentiment(forContent: tweet.text, language: tweet.lang) { score in
+        sentimentAnalyzer.analyzeSentiment(forContent: tweet.text, language: tweet.lang) { score in
             guard let score = score else { return }
             completionHandler(score)
         }

@@ -37,6 +37,20 @@
             BlueprintName = "TwitterSentimentAnalysis"
             ReferencedContainer = "container:TwitterSentimentAnalysis.xcodeproj">
          </BuildableReference>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "TwitterAPIPackage"
+            BuildableName = "TwitterAPIPackage"
+            BlueprintName = "TwitterAPIPackage"
+            ReferencedContainer = "container:../Packages/TwitterAPIPackage">
+         </BuildableReference>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "GoogleAPIPackage"
+            BuildableName = "GoogleAPIPackage"
+            BlueprintName = "GoogleAPIPackage"
+            ReferencedContainer = "container:../Packages/GoogleAPIPackage">
+         </BuildableReference>
       </CodeCoverageTargets>
       <Testables>
          <TestableReference
@@ -47,6 +61,26 @@
                BuildableName = "TwitterSentimentAnalysisTests.xctest"
                BlueprintName = "TwitterSentimentAnalysisTests"
                ReferencedContainer = "container:TwitterSentimentAnalysis.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "GoogleAPIPackageTests"
+               BuildableName = "GoogleAPIPackageTests"
+               BlueprintName = "GoogleAPIPackageTests"
+               ReferencedContainer = "container:../Packages/GoogleAPIPackage">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "TwitterAPIPackageTests"
+               BuildableName = "TwitterAPIPackageTests"
+               BlueprintName = "TwitterAPIPackageTests"
+               ReferencedContainer = "container:../Packages/TwitterAPIPackage">
             </BuildableReference>
          </TestableReference>
       </Testables>
