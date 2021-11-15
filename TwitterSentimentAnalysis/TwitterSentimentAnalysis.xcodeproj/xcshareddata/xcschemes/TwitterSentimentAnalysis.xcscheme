@@ -37,20 +37,6 @@
             BlueprintName = "TwitterSentimentAnalysis"
             ReferencedContainer = "container:TwitterSentimentAnalysis.xcodeproj">
          </BuildableReference>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "TwitterAPIPackage"
-            BuildableName = "TwitterAPIPackage"
-            BlueprintName = "TwitterAPIPackage"
-            ReferencedContainer = "container:../Packages/TwitterAPIPackage">
-         </BuildableReference>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "GoogleAPIPackage"
-            BuildableName = "GoogleAPIPackage"
-            BlueprintName = "GoogleAPIPackage"
-            ReferencedContainer = "container:../Packages/GoogleAPIPackage">
-         </BuildableReference>
       </CodeCoverageTargets>
       <Testables>
          <TestableReference
@@ -81,6 +67,16 @@
                BuildableName = "TwitterAPIPackageTests"
                BlueprintName = "TwitterAPIPackageTests"
                ReferencedContainer = "container:../Packages/TwitterAPIPackage">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "TwitterSentimentAnalysisCorePackageTests"
+               BuildableName = "TwitterSentimentAnalysisCorePackageTests"
+               BlueprintName = "TwitterSentimentAnalysisCorePackageTests"
+               ReferencedContainer = "container:../Packages/TwitterSentimentAnalysisCorePackage">
             </BuildableReference>
          </TestableReference>
       </Testables>

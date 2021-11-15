@@ -7,14 +7,14 @@
 
 import UIKit
 
-class TableViewCell: UITableViewCell, Reusable {
+open class TableViewCell: UITableViewCell, Reusable {
 
     @available(*, unavailable)
-    required init?(coder: NSCoder) {
+    required public init?(coder: NSCoder) {
         nil
     }
 
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+    override public init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
     }
 }

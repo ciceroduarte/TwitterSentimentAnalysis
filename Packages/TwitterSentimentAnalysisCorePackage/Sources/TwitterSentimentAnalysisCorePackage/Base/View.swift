@@ -7,14 +7,14 @@
 
 import UIKit
 
-class View: UIView {
+open class View: UIView {
 
     @available(*, unavailable)
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         nil
     }
 
-    override init(frame: CGRect) {
+    override public init(frame: CGRect) {
         super.init(frame: .zero)
     }
 }

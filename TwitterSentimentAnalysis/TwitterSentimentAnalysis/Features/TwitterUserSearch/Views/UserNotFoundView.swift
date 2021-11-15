@@ -5,8 +5,8 @@
 //  Created by Cicero Duarte on 10/11/21.
 //
 
-import Foundation
 import UIKit
+import TwitterSentimentAnalysisCorePackage
 
 class UserNotFoundView: View {
 

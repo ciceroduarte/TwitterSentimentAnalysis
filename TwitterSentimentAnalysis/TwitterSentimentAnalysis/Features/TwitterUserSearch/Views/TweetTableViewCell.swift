@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import TwitterSentimentAnalysisCorePackage
 
 class TweetTableViewCell: TableViewCell {
 

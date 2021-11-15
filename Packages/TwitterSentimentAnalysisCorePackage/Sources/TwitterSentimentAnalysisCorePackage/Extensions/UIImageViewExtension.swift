@@ -5,12 +5,17 @@
 //  Created by Cicero Duarte on 09/11/21.
 //
 
+#if !os(macOS)
+
 import UIKit
 import Kingfisher
 
-extension UIImageView {
+public extension UIImageView {
 
     func setImage(with url: URL?) {
         kf.setImage(with: url)
     }
 }
+
+
+#endif
