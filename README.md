@@ -6,7 +6,6 @@
 ## Requirements
 
 - Xcode 13.1+
-- [CocoaPods](http://cocoapods.org/)
 
 ## Libraries
 
@@ -24,5 +23,3 @@ struct AppSettings {
     static let twitterKey = ""
     static let googleKey = ""
 ```
-
-- Run `pod install` from the `TwitterSentimentAnalysis` directory
