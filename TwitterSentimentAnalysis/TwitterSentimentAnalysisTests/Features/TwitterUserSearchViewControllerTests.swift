@@ -15,7 +15,8 @@ class TwitterUserSearchViewControllerTests: XCTestCase {
     lazy var twitterUserProvider = TwitterUserProviderMock()
     lazy var navigationControllerSpy = NavigationControllerSpy()
     lazy var coordinator = AppCoordinator(withNavigationController: navigationControllerSpy)
-    lazy var viewModel = TwitterUserSearchViewModel(withTwitterUserProvider: twitterUserProvider, coordinator: coordinator)
+    lazy var viewModel = TwitterUserSearchViewModel(withTwitterUserProvider: twitterUserProvider,
+                                                    coordinator: coordinator)
     lazy var sut = TwitterUserSearchViewController(withViewModel: viewModel)
 
     func test_loadingView_shouldStartHidden() {
@@ -148,7 +149,12 @@ class TwitterUserProviderMock: TwitterUserProvider {
     var shouldReturnSuccess = false
 
     func fetchUser(byUsername username: String, completionHandler: @escaping (User?) -> Void) {
-        let user: User? = shouldReturnSuccess ? User(id: String(), username: String(), name: String(), profileImageUrl: URL(string: "http://url.com")!) : nil
+        let user: User?
+        if shouldReturnSuccess {
+            user = User(id: "", username: "", name: "", profileImageUrl: URL(string: "http://url.com")!)
+        } else {
+            user = nil
+        }
 
         completionHandler(user)
     }

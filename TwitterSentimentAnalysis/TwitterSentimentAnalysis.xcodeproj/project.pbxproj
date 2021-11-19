@@ -247,6 +247,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 42F4FB4E273A0886002A0B89 /* Build configuration list for PBXNativeTarget "TwitterSentimentAnalysis" */;
 			buildPhases = (
+				424A136127486B9300613026 /* SwiftLint */,
 				42F4FB20273A0883002A0B89 /* Sources */,
 				42F4FB21273A0883002A0B89 /* Frameworks */,
 				42F4FB22273A0883002A0B89 /* Resources */,
@@ -343,6 +344,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		424A136127486B9300613026 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		42F4FB20273A0883002A0B89 /* Sources */ = {
