@@ -31,21 +31,24 @@ open class APIProvider {
                 return
             }
 
+            let result: Result<T, FetchError>
+
             do {
                 let decoder = JSONDecoder()
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
 
                 let responseValue = try decoder.decode(representable.self, from: data)
 
-                DispatchQueue.main.async {
-                    completionHandler(.success(responseValue))
-                }
+                result = .success(responseValue)
 
             } catch {
-                DispatchQueue.main.async {
-                    completionHandler(.failure(.invalidResponse))
-                }
+                result = .failure(.invalidResponse)
             }
+
+            DispatchQueue.main.async {
+                completionHandler(result)
+            }
+
         }).resume()
     }
 }
